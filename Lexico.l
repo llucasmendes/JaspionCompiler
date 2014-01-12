@@ -17,6 +17,7 @@ int line_num = 1;
 %}
 digit [0-9]
 letras [a-zA-Z]
+cesp[\!|\@|\#|\$|\&|\*|\'|\?|\.|\,|\^|\~|\_]
 %%
 %{
 /* * * * * * * * *
@@ -38,6 +39,7 @@ letras [a-zA-Z]
 <STRING>\. ECHO;
 <STRING>[\\][\"] ECHO;
 <STRING>\n {printf("ERROLEX(String)"); BEGIN(INITIAL);}
+<STRING><<EOF>> {printf("ERROLEX(String)"); BEGIN(INITIAL);}
 <STRING>["] {printf(") "); BEGIN(INITIAL);}
 
 [/][*] {BEGIN(COMENT); printf("COMENT(");}
@@ -48,17 +50,21 @@ letras [a-zA-Z]
 
 {digit} {BEGIN(DIGITOS); printf("NUMER(%s",yytext); }
 <DIGITOS>{digit} {ECHO;} 
-<DIGITOS>[\;] {printf(") PVIRGULA ");BEGIN(INITIAL);}
+<DIGITOS>[;] {printf(") PVIRGULA ");BEGIN(INITIAL);}
+<DIGITOS>[\]] {printf(") FECOLC ");BEGIN(INITIAL);}
+<DIGITOS>[)] {printf(") FEPAREN ");BEGIN(INITIAL);}
 <DIGITOS>[ |\n|\]] {printf(") ");BEGIN(INITIAL);}
-<DIGITOS>. { printf(") ERRO(NUM) "); BEGIN(INITIAL);}
+<DIGITOS>. { printf(") ERROLEX(NUM) "); BEGIN(INITIAL);}
 
 {letras} {BEGIN(LETRAS); printf("ID(%s",yytext); }
 <LETRAS>{letras} {ECHO;} 
 <LETRAS>[(] {printf(") ABPAREN ");BEGIN(INITIAL);}
 <LETRAS>[)] {printf(") FEPAREN ");BEGIN(INITIAL);}
 <LETRAS>[;] {printf(") PVIRGULA ");BEGIN(INITIAL);}
-<LETRAS> {printf(") ");BEGIN(INITIAL);}
-<LETRAS>[^\t|\n| ] { printf(") ERRO(ID) "); BEGIN(INITIAL);}
+<LETRAS>[[] {printf(") ABCOLC ");BEGIN(INITIAL);}
+<LETRAS>["] {printf(") ");BEGIN(INITIAL);printf("STRING("); BEGIN(STRING);}
+<LETRAS>[" "|\n|\t] {printf(") ");BEGIN(INITIAL);}
+<LETRAS>{digit}|{cesp} { printf(") ERROLEX(ID) ");BEGIN(INITIAL);}
 
 [\+|\,|\-|\*|\/]|(\<\=)|[\<]|(\>=)|[\>]|(\!=)|[\!]|(\==)|[\=] { printf("OPERADOR(%s) ",yytext); }
 [\#|\$|\&] { printf("CARACESPEC(%s) ",yytext); }
@@ -84,4 +90,3 @@ int main(int argc,char *argv[]) {
 
 yylex();
 }
-
