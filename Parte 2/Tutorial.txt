@@ -1,0 +1,8 @@
+Tutorial da execução do compilador
+execute o script:
+
+./manchete.sh 
+para rodar o analisador a partir de um codigo de exemplo:
+
+./jaspion < testeh.c
+

@@ -1,0 +1,1281 @@
+Terminals unused in grammar
+
+   PTVIRG
+
+
+Estado 102conflitos: 1 de deslocamento/redução
+
+
+Gramática
+
+    0 $accept: Programa $end
+
+    1 Programa: Declaracaolista
+
+    2 Declaracaolista: Declaracaolista Declaracao
+    3                | Declaracao
+
+    4 Declaracao: Vardeclaracao
+    5           | Fundeclaracao
+
+    6 Vardeclaracao: Tipoespecificador ID PVIRG
+    7              | Tipoespecificador ID ABCOLC NUM FECOLC PVIRG
+
+    8 Tipoespecificador: INT
+    9                  | VOID
+   10                  | STRINGE
+
+   11 Fundeclaracao: Tipoespecificador ID ABPAREN Params FEPAREN Compostodecl
+
+   12 Params: Paramslista
+   13       | VOID
+
+   14 Paramslista: Paramslista VIRG Param
+   15            | Param
+
+   16 Param: Tipoespecificador ID
+   17      | Tipoespecificador ID ABCOLC FECOLC
+
+   18 Compostodecl: ABCHA Localdecla Statementlista FECHA
+
+   19 Localdecla: Localdecla Vardeclaracao
+   20           | Vazio
+
+   21 Statementlista: Statementlista Statement
+   22               | Vazio
+
+   23 Statement: Expressaodecl
+   24          | Compostodecl
+   25          | Selecaodecl
+   26          | Iteracaodecl
+   27          | Retornodecl
+
+   28 Expressaodecl: Expressao PVIRG
+   29              | PVIRG
+
+   30 Selecaodecl: IF ABPAREN Expressao FEPAREN Statement
+   31            | IF ABPAREN Expressao FEPAREN Statement ELSE Statement
+
+   32 Iteracaodecl: WHILE ABPAREN Expressao FEPAREN Statement
+
+   33 Retornodecl: RETURN PVIRG
+   34            | RETURN Expressao PVIRG
+
+   35 Expressao: Var IGUAL Expressao
+   36          | Simplesexpressao
+
+   37 Var: ID
+   38    | ID ABCOLC Expressao FECOLC
+
+   39 Simplesexpressao: Somaexpressao Relacional Somaexpressao
+   40                 | Somaexpressao
+
+   41 Relacional: MEI
+   42           | ME
+   43           | MA
+   44           | MAI
+   45           | II
+   46           | DIF
+
+   47 Somaexpressao: Somaexpressao Soma Termo
+   48              | Termo
+
+   49 Soma: SOMA
+   50     | SUBT
+
+   51 Termo: Termo Mult Fator
+   52      | Fator
+
+   53 Mult: MULT
+   54     | DIVI
+
+   55 Fator: ABPAREN Expressao FEPAREN
+   56      | Var
+   57      | Ativacao
+   58      | NUM
+   59      | STRINGVALUE
+
+   60 Ativacao: ID ABPAREN Args FEPAREN
+
+   61 Args: Argslista
+   62     | Vazio
+
+   63 Argslista: Argslista VIRG Expressao
+   64          | Expressao
+
+   65 Vazio: /* vazio */
+
+
+Terminais, com as regras onde eles aparecem
+
+$end (0) 0
+error (256)
+PTVIRG (258)
+IF (259) 30 31
+ELSE (260) 31
+SOMA (261) 49
+SUBT (262) 50
+MULT (263) 53
+DIVI (264) 54
+ID (265) 6 7 11 16 17 37 38 60
+NUM (266) 7 58
+STRINGVALUE (267) 59
+STRINGE (268) 10
+ABPAREN (269) 11 30 31 32 55 60
+FEPAREN (270) 11 30 31 32 55 60
+ABCOLC (271) 7 17 38
+FECOLC (272) 7 17 38
+ABCHA (273) 18
+FECHA (274) 18
+VIRG (275) 14 63
+PVIRG (276) 6 7 28 29 33 34
+INT (277) 8
+VOID (278) 9 13
+WHILE (279) 32
+RETURN (280) 33 34
+IGUAL (281) 35
+MEI (282) 41
+ME (283) 42
+MA (284) 43
+MAI (285) 44
+II (286) 45
+DIF (287) 46
+
+
+Não-terminais com as regras onde eles aparecem
+
+$accept (33)
+    à esquerda: 0
+Programa (34)
+    à esquerda: 1, à direita: 0
+Declaracaolista (35)
+    à esquerda: 2 3, à direita: 1 2
+Declaracao (36)
+    à esquerda: 4 5, à direita: 2 3
+Vardeclaracao (37)
+    à esquerda: 6 7, à direita: 4 19
+Tipoespecificador (38)
+    à esquerda: 8 9 10, à direita: 6 7 11 16 17
+Fundeclaracao (39)
+    à esquerda: 11, à direita: 5
+Params (40)
+    à esquerda: 12 13, à direita: 11
+Paramslista (41)
+    à esquerda: 14 15, à direita: 12 14
+Param (42)
+    à esquerda: 16 17, à direita: 14 15
+Compostodecl (43)
+    à esquerda: 18, à direita: 11 24
+Localdecla (44)
+    à esquerda: 19 20, à direita: 18 19
+Statementlista (45)
+    à esquerda: 21 22, à direita: 18 21
+Statement (46)
+    à esquerda: 23 24 25 26 27, à direita: 21 30 31 32
+Expressaodecl (47)
+    à esquerda: 28 29, à direita: 23
+Selecaodecl (48)
+    à esquerda: 30 31, à direita: 25
+Iteracaodecl (49)
+    à esquerda: 32, à direita: 26
+Retornodecl (50)
+    à esquerda: 33 34, à direita: 27
+Expressao (51)
+    à esquerda: 35 36, à direita: 28 30 31 32 34 35 38 55 63 64
+Var (52)
+    à esquerda: 37 38, à direita: 35 56
+Simplesexpressao (53)
+    à esquerda: 39 40, à direita: 36
+Relacional (54)
+    à esquerda: 41 42 43 44 45 46, à direita: 39
+Somaexpressao (55)
+    à esquerda: 47 48, à direita: 39 40 47
+Soma (56)
+    à esquerda: 49 50, à direita: 47
+Termo (57)
+    à esquerda: 51 52, à direita: 47 48 51
+Mult (58)
+    à esquerda: 53 54, à direita: 51
+Fator (59)
+    à esquerda: 55 56 57 58 59, à direita: 51 52
+Ativacao (60)
+    à esquerda: 60, à direita: 57
+Args (61)
+    à esquerda: 61 62, à direita: 60
+Argslista (62)
+    à esquerda: 63 64, à direita: 61 63
+Vazio (63)
+    à esquerda: 65, à direita: 20 22 62
+
+
+estado 0
+
+    0 $accept: . Programa $end
+
+    STRINGE  deslocar, e ir ao estado 1
+    INT      deslocar, e ir ao estado 2
+    VOID     deslocar, e ir ao estado 3
+
+    Programa           ir ao estado 4
+    Declaracaolista    ir ao estado 5
+    Declaracao         ir ao estado 6
+    Vardeclaracao      ir ao estado 7
+    Tipoespecificador  ir ao estado 8
+    Fundeclaracao      ir ao estado 9
+
+
+estado 1
+
+   10 Tipoespecificador: STRINGE .
+
+    $padrão  reduzir usando a regra 10 (Tipoespecificador)
+
+
+estado 2
+
+    8 Tipoespecificador: INT .
+
+    $padrão  reduzir usando a regra 8 (Tipoespecificador)
+
+
+estado 3
+
+    9 Tipoespecificador: VOID .
+
+    $padrão  reduzir usando a regra 9 (Tipoespecificador)
+
+
+estado 4
+
+    0 $accept: Programa . $end
+
+    $end  deslocar, e ir ao estado 10
+
+
+estado 5
+
+    1 Programa: Declaracaolista .
+    2 Declaracaolista: Declaracaolista . Declaracao
+
+    STRINGE  deslocar, e ir ao estado 1
+    INT      deslocar, e ir ao estado 2
+    VOID     deslocar, e ir ao estado 3
+
+    $padrão  reduzir usando a regra 1 (Programa)
+
+    Declaracao         ir ao estado 11
+    Vardeclaracao      ir ao estado 7
+    Tipoespecificador  ir ao estado 8
+    Fundeclaracao      ir ao estado 9
+
+
+estado 6
+
+    3 Declaracaolista: Declaracao .
+
+    $padrão  reduzir usando a regra 3 (Declaracaolista)
+
+
+estado 7
+
+    4 Declaracao: Vardeclaracao .
+
+    $padrão  reduzir usando a regra 4 (Declaracao)
+
+
+estado 8
+
+    6 Vardeclaracao: Tipoespecificador . ID PVIRG
+    7              | Tipoespecificador . ID ABCOLC NUM FECOLC PVIRG
+   11 Fundeclaracao: Tipoespecificador . ID ABPAREN Params FEPAREN Compostodecl
+
+    ID  deslocar, e ir ao estado 12
+
+
+estado 9
+
+    5 Declaracao: Fundeclaracao .
+
+    $padrão  reduzir usando a regra 5 (Declaracao)
+
+
+estado 10
+
+    0 $accept: Programa $end .
+
+    $padrão  aceitar
+
+
+estado 11
+
+    2 Declaracaolista: Declaracaolista Declaracao .
+
+    $padrão  reduzir usando a regra 2 (Declaracaolista)
+
+
+estado 12
+
+    6 Vardeclaracao: Tipoespecificador ID . PVIRG
+    7              | Tipoespecificador ID . ABCOLC NUM FECOLC PVIRG
+   11 Fundeclaracao: Tipoespecificador ID . ABPAREN Params FEPAREN Compostodecl
+
+    ABPAREN  deslocar, e ir ao estado 13
+    ABCOLC   deslocar, e ir ao estado 14
+    PVIRG    deslocar, e ir ao estado 15
+
+
+estado 13
+
+   11 Fundeclaracao: Tipoespecificador ID ABPAREN . Params FEPAREN Compostodecl
+
+    STRINGE  deslocar, e ir ao estado 1
+    INT      deslocar, e ir ao estado 2
+    VOID     deslocar, e ir ao estado 16
+
+    Tipoespecificador  ir ao estado 17
+    Params             ir ao estado 18
+    Paramslista        ir ao estado 19
+    Param              ir ao estado 20
+
+
+estado 14
+
+    7 Vardeclaracao: Tipoespecificador ID ABCOLC . NUM FECOLC PVIRG
+
+    NUM  deslocar, e ir ao estado 21
+
+
+estado 15
+
+    6 Vardeclaracao: Tipoespecificador ID PVIRG .
+
+    $padrão  reduzir usando a regra 6 (Vardeclaracao)
+
+
+estado 16
+
+    9 Tipoespecificador: VOID .
+   13 Params: VOID .
+
+    FEPAREN   reduzir usando a regra 13 (Params)
+    $padrão  reduzir usando a regra 9 (Tipoespecificador)
+
+
+estado 17
+
+   16 Param: Tipoespecificador . ID
+   17      | Tipoespecificador . ID ABCOLC FECOLC
+
+    ID  deslocar, e ir ao estado 22
+
+
+estado 18
+
+   11 Fundeclaracao: Tipoespecificador ID ABPAREN Params . FEPAREN Compostodecl
+
+    FEPAREN  deslocar, e ir ao estado 23
+
+
+estado 19
+
+   12 Params: Paramslista .
+   14 Paramslista: Paramslista . VIRG Param
+
+    VIRG  deslocar, e ir ao estado 24
+
+    $padrão  reduzir usando a regra 12 (Params)
+
+
+estado 20
+
+   15 Paramslista: Param .
+
+    $padrão  reduzir usando a regra 15 (Paramslista)
+
+
+estado 21
+
+    7 Vardeclaracao: Tipoespecificador ID ABCOLC NUM . FECOLC PVIRG
+
+    FECOLC  deslocar, e ir ao estado 25
+
+
+estado 22
+
+   16 Param: Tipoespecificador ID .
+   17      | Tipoespecificador ID . ABCOLC FECOLC
+
+    ABCOLC  deslocar, e ir ao estado 26
+
+    $padrão  reduzir usando a regra 16 (Param)
+
+
+estado 23
+
+   11 Fundeclaracao: Tipoespecificador ID ABPAREN Params FEPAREN . Compostodecl
+
+    ABCHA  deslocar, e ir ao estado 27
+
+    Compostodecl  ir ao estado 28
+
+
+estado 24
+
+   14 Paramslista: Paramslista VIRG . Param
+
+    STRINGE  deslocar, e ir ao estado 1
+    INT      deslocar, e ir ao estado 2
+    VOID     deslocar, e ir ao estado 3
+
+    Tipoespecificador  ir ao estado 17
+    Param              ir ao estado 29
+
+
+estado 25
+
+    7 Vardeclaracao: Tipoespecificador ID ABCOLC NUM FECOLC . PVIRG
+
+    PVIRG  deslocar, e ir ao estado 30
+
+
+estado 26
+
+   17 Param: Tipoespecificador ID ABCOLC . FECOLC
+
+    FECOLC  deslocar, e ir ao estado 31
+
+
+estado 27
+
+   18 Compostodecl: ABCHA . Localdecla Statementlista FECHA
+
+    $padrão  reduzir usando a regra 65 (Vazio)
+
+    Localdecla  ir ao estado 32
+    Vazio       ir ao estado 33
+
+
+estado 28
+
+   11 Fundeclaracao: Tipoespecificador ID ABPAREN Params FEPAREN Compostodecl .
+
+    $padrão  reduzir usando a regra 11 (Fundeclaracao)
+
+
+estado 29
+
+   14 Paramslista: Paramslista VIRG Param .
+
+    $padrão  reduzir usando a regra 14 (Paramslista)
+
+
+estado 30
+
+    7 Vardeclaracao: Tipoespecificador ID ABCOLC NUM FECOLC PVIRG .
+
+    $padrão  reduzir usando a regra 7 (Vardeclaracao)
+
+
+estado 31
+
+   17 Param: Tipoespecificador ID ABCOLC FECOLC .
+
+    $padrão  reduzir usando a regra 17 (Param)
+
+
+estado 32
+
+   18 Compostodecl: ABCHA Localdecla . Statementlista FECHA
+   19 Localdecla: Localdecla . Vardeclaracao
+
+    STRINGE  deslocar, e ir ao estado 1
+    INT      deslocar, e ir ao estado 2
+    VOID     deslocar, e ir ao estado 3
+
+    $padrão  reduzir usando a regra 65 (Vazio)
+
+    Vardeclaracao      ir ao estado 34
+    Tipoespecificador  ir ao estado 35
+    Statementlista     ir ao estado 36
+    Vazio              ir ao estado 37
+
+
+estado 33
+
+   20 Localdecla: Vazio .
+
+    $padrão  reduzir usando a regra 20 (Localdecla)
+
+
+estado 34
+
+   19 Localdecla: Localdecla Vardeclaracao .
+
+    $padrão  reduzir usando a regra 19 (Localdecla)
+
+
+estado 35
+
+    6 Vardeclaracao: Tipoespecificador . ID PVIRG
+    7              | Tipoespecificador . ID ABCOLC NUM FECOLC PVIRG
+
+    ID  deslocar, e ir ao estado 38
+
+
+estado 36
+
+   18 Compostodecl: ABCHA Localdecla Statementlista . FECHA
+   21 Statementlista: Statementlista . Statement
+
+    IF           deslocar, e ir ao estado 39
+    ID           deslocar, e ir ao estado 40
+    NUM          deslocar, e ir ao estado 41
+    STRINGVALUE  deslocar, e ir ao estado 42
+    ABPAREN      deslocar, e ir ao estado 43
+    ABCHA        deslocar, e ir ao estado 27
+    FECHA        deslocar, e ir ao estado 44
+    PVIRG        deslocar, e ir ao estado 45
+    WHILE        deslocar, e ir ao estado 46
+    RETURN       deslocar, e ir ao estado 47
+
+    Compostodecl      ir ao estado 48
+    Statement         ir ao estado 49
+    Expressaodecl     ir ao estado 50
+    Selecaodecl       ir ao estado 51
+    Iteracaodecl      ir ao estado 52
+    Retornodecl       ir ao estado 53
+    Expressao         ir ao estado 54
+    Var               ir ao estado 55
+    Simplesexpressao  ir ao estado 56
+    Somaexpressao     ir ao estado 57
+    Termo             ir ao estado 58
+    Fator             ir ao estado 59
+    Ativacao          ir ao estado 60
+
+
+estado 37
+
+   22 Statementlista: Vazio .
+
+    $padrão  reduzir usando a regra 22 (Statementlista)
+
+
+estado 38
+
+    6 Vardeclaracao: Tipoespecificador ID . PVIRG
+    7              | Tipoespecificador ID . ABCOLC NUM FECOLC PVIRG
+
+    ABCOLC  deslocar, e ir ao estado 14
+    PVIRG   deslocar, e ir ao estado 15
+
+
+estado 39
+
+   30 Selecaodecl: IF . ABPAREN Expressao FEPAREN Statement
+   31            | IF . ABPAREN Expressao FEPAREN Statement ELSE Statement
+
+    ABPAREN  deslocar, e ir ao estado 61
+
+
+estado 40
+
+   37 Var: ID .
+   38    | ID . ABCOLC Expressao FECOLC
+   60 Ativacao: ID . ABPAREN Args FEPAREN
+
+    ABPAREN  deslocar, e ir ao estado 62
+    ABCOLC   deslocar, e ir ao estado 63
+
+    $padrão  reduzir usando a regra 37 (Var)
+
+
+estado 41
+
+   58 Fator: NUM .
+
+    $padrão  reduzir usando a regra 58 (Fator)
+
+
+estado 42
+
+   59 Fator: STRINGVALUE .
+
+    $padrão  reduzir usando a regra 59 (Fator)
+
+
+estado 43
+
+   55 Fator: ABPAREN . Expressao FEPAREN
+
+    ID           deslocar, e ir ao estado 40
+    NUM          deslocar, e ir ao estado 41
+    STRINGVALUE  deslocar, e ir ao estado 42
+    ABPAREN      deslocar, e ir ao estado 43
+
+    Expressao         ir ao estado 64
+    Var               ir ao estado 55
+    Simplesexpressao  ir ao estado 56
+    Somaexpressao     ir ao estado 57
+    Termo             ir ao estado 58
+    Fator             ir ao estado 59
+    Ativacao          ir ao estado 60
+
+
+estado 44
+
+   18 Compostodecl: ABCHA Localdecla Statementlista FECHA .
+
+    $padrão  reduzir usando a regra 18 (Compostodecl)
+
+
+estado 45
+
+   29 Expressaodecl: PVIRG .
+
+    $padrão  reduzir usando a regra 29 (Expressaodecl)
+
+
+estado 46
+
+   32 Iteracaodecl: WHILE . ABPAREN Expressao FEPAREN Statement
+
+    ABPAREN  deslocar, e ir ao estado 65
+
+
+estado 47
+
+   33 Retornodecl: RETURN . PVIRG
+   34            | RETURN . Expressao PVIRG
+
+    ID           deslocar, e ir ao estado 40
+    NUM          deslocar, e ir ao estado 41
+    STRINGVALUE  deslocar, e ir ao estado 42
+    ABPAREN      deslocar, e ir ao estado 43
+    PVIRG        deslocar, e ir ao estado 66
+
+    Expressao         ir ao estado 67
+    Var               ir ao estado 55
+    Simplesexpressao  ir ao estado 56
+    Somaexpressao     ir ao estado 57
+    Termo             ir ao estado 58
+    Fator             ir ao estado 59
+    Ativacao          ir ao estado 60
+
+
+estado 48
+
+   24 Statement: Compostodecl .
+
+    $padrão  reduzir usando a regra 24 (Statement)
+
+
+estado 49
+
+   21 Statementlista: Statementlista Statement .
+
+    $padrão  reduzir usando a regra 21 (Statementlista)
+
+
+estado 50
+
+   23 Statement: Expressaodecl .
+
+    $padrão  reduzir usando a regra 23 (Statement)
+
+
+estado 51
+
+   25 Statement: Selecaodecl .
+
+    $padrão  reduzir usando a regra 25 (Statement)
+
+
+estado 52
+
+   26 Statement: Iteracaodecl .
+
+    $padrão  reduzir usando a regra 26 (Statement)
+
+
+estado 53
+
+   27 Statement: Retornodecl .
+
+    $padrão  reduzir usando a regra 27 (Statement)
+
+
+estado 54
+
+   28 Expressaodecl: Expressao . PVIRG
+
+    PVIRG  deslocar, e ir ao estado 68
+
+
+estado 55
+
+   35 Expressao: Var . IGUAL Expressao
+   56 Fator: Var .
+
+    IGUAL  deslocar, e ir ao estado 69
+
+    $padrão  reduzir usando a regra 56 (Fator)
+
+
+estado 56
+
+   36 Expressao: Simplesexpressao .
+
+    $padrão  reduzir usando a regra 36 (Expressao)
+
+
+estado 57
+
+   39 Simplesexpressao: Somaexpressao . Relacional Somaexpressao
+   40                 | Somaexpressao .
+   47 Somaexpressao: Somaexpressao . Soma Termo
+
+    SOMA  deslocar, e ir ao estado 70
+    SUBT  deslocar, e ir ao estado 71
+    MEI   deslocar, e ir ao estado 72
+    ME    deslocar, e ir ao estado 73
+    MA    deslocar, e ir ao estado 74
+    MAI   deslocar, e ir ao estado 75
+    II    deslocar, e ir ao estado 76
+    DIF   deslocar, e ir ao estado 77
+
+    $padrão  reduzir usando a regra 40 (Simplesexpressao)
+
+    Relacional  ir ao estado 78
+    Soma        ir ao estado 79
+
+
+estado 58
+
+   48 Somaexpressao: Termo .
+   51 Termo: Termo . Mult Fator
+
+    MULT  deslocar, e ir ao estado 80
+    DIVI  deslocar, e ir ao estado 81
+
+    $padrão  reduzir usando a regra 48 (Somaexpressao)
+
+    Mult  ir ao estado 82
+
+
+estado 59
+
+   52 Termo: Fator .
+
+    $padrão  reduzir usando a regra 52 (Termo)
+
+
+estado 60
+
+   57 Fator: Ativacao .
+
+    $padrão  reduzir usando a regra 57 (Fator)
+
+
+estado 61
+
+   30 Selecaodecl: IF ABPAREN . Expressao FEPAREN Statement
+   31            | IF ABPAREN . Expressao FEPAREN Statement ELSE Statement
+
+    ID           deslocar, e ir ao estado 40
+    NUM          deslocar, e ir ao estado 41
+    STRINGVALUE  deslocar, e ir ao estado 42
+    ABPAREN      deslocar, e ir ao estado 43
+
+    Expressao         ir ao estado 83
+    Var               ir ao estado 55
+    Simplesexpressao  ir ao estado 56
+    Somaexpressao     ir ao estado 57
+    Termo             ir ao estado 58
+    Fator             ir ao estado 59
+    Ativacao          ir ao estado 60
+
+
+estado 62
+
+   60 Ativacao: ID ABPAREN . Args FEPAREN
+
+    ID           deslocar, e ir ao estado 40
+    NUM          deslocar, e ir ao estado 41
+    STRINGVALUE  deslocar, e ir ao estado 42
+    ABPAREN      deslocar, e ir ao estado 43
+
+    $padrão  reduzir usando a regra 65 (Vazio)
+
+    Expressao         ir ao estado 84
+    Var               ir ao estado 55
+    Simplesexpressao  ir ao estado 56
+    Somaexpressao     ir ao estado 57
+    Termo             ir ao estado 58
+    Fator             ir ao estado 59
+    Ativacao          ir ao estado 60
+    Args              ir ao estado 85
+    Argslista         ir ao estado 86
+    Vazio             ir ao estado 87
+
+
+estado 63
+
+   38 Var: ID ABCOLC . Expressao FECOLC
+
+    ID           deslocar, e ir ao estado 40
+    NUM          deslocar, e ir ao estado 41
+    STRINGVALUE  deslocar, e ir ao estado 42
+    ABPAREN      deslocar, e ir ao estado 43
+
+    Expressao         ir ao estado 88
+    Var               ir ao estado 55
+    Simplesexpressao  ir ao estado 56
+    Somaexpressao     ir ao estado 57
+    Termo             ir ao estado 58
+    Fator             ir ao estado 59
+    Ativacao          ir ao estado 60
+
+
+estado 64
+
+   55 Fator: ABPAREN Expressao . FEPAREN
+
+    FEPAREN  deslocar, e ir ao estado 89
+
+
+estado 65
+
+   32 Iteracaodecl: WHILE ABPAREN . Expressao FEPAREN Statement
+
+    ID           deslocar, e ir ao estado 40
+    NUM          deslocar, e ir ao estado 41
+    STRINGVALUE  deslocar, e ir ao estado 42
+    ABPAREN      deslocar, e ir ao estado 43
+
+    Expressao         ir ao estado 90
+    Var               ir ao estado 55
+    Simplesexpressao  ir ao estado 56
+    Somaexpressao     ir ao estado 57
+    Termo             ir ao estado 58
+    Fator             ir ao estado 59
+    Ativacao          ir ao estado 60
+
+
+estado 66
+
+   33 Retornodecl: RETURN PVIRG .
+
+    $padrão  reduzir usando a regra 33 (Retornodecl)
+
+
+estado 67
+
+   34 Retornodecl: RETURN Expressao . PVIRG
+
+    PVIRG  deslocar, e ir ao estado 91
+
+
+estado 68
+
+   28 Expressaodecl: Expressao PVIRG .
+
+    $padrão  reduzir usando a regra 28 (Expressaodecl)
+
+
+estado 69
+
+   35 Expressao: Var IGUAL . Expressao
+
+    ID           deslocar, e ir ao estado 40
+    NUM          deslocar, e ir ao estado 41
+    STRINGVALUE  deslocar, e ir ao estado 42
+    ABPAREN      deslocar, e ir ao estado 43
+
+    Expressao         ir ao estado 92
+    Var               ir ao estado 55
+    Simplesexpressao  ir ao estado 56
+    Somaexpressao     ir ao estado 57
+    Termo             ir ao estado 58
+    Fator             ir ao estado 59
+    Ativacao          ir ao estado 60
+
+
+estado 70
+
+   49 Soma: SOMA .
+
+    $padrão  reduzir usando a regra 49 (Soma)
+
+
+estado 71
+
+   50 Soma: SUBT .
+
+    $padrão  reduzir usando a regra 50 (Soma)
+
+
+estado 72
+
+   41 Relacional: MEI .
+
+    $padrão  reduzir usando a regra 41 (Relacional)
+
+
+estado 73
+
+   42 Relacional: ME .
+
+    $padrão  reduzir usando a regra 42 (Relacional)
+
+
+estado 74
+
+   43 Relacional: MA .
+
+    $padrão  reduzir usando a regra 43 (Relacional)
+
+
+estado 75
+
+   44 Relacional: MAI .
+
+    $padrão  reduzir usando a regra 44 (Relacional)
+
+
+estado 76
+
+   45 Relacional: II .
+
+    $padrão  reduzir usando a regra 45 (Relacional)
+
+
+estado 77
+
+   46 Relacional: DIF .
+
+    $padrão  reduzir usando a regra 46 (Relacional)
+
+
+estado 78
+
+   39 Simplesexpressao: Somaexpressao Relacional . Somaexpressao
+
+    ID           deslocar, e ir ao estado 40
+    NUM          deslocar, e ir ao estado 41
+    STRINGVALUE  deslocar, e ir ao estado 42
+    ABPAREN      deslocar, e ir ao estado 43
+
+    Var            ir ao estado 93
+    Somaexpressao  ir ao estado 94
+    Termo          ir ao estado 58
+    Fator          ir ao estado 59
+    Ativacao       ir ao estado 60
+
+
+estado 79
+
+   47 Somaexpressao: Somaexpressao Soma . Termo
+
+    ID           deslocar, e ir ao estado 40
+    NUM          deslocar, e ir ao estado 41
+    STRINGVALUE  deslocar, e ir ao estado 42
+    ABPAREN      deslocar, e ir ao estado 43
+
+    Var       ir ao estado 93
+    Termo     ir ao estado 95
+    Fator     ir ao estado 59
+    Ativacao  ir ao estado 60
+
+
+estado 80
+
+   53 Mult: MULT .
+
+    $padrão  reduzir usando a regra 53 (Mult)
+
+
+estado 81
+
+   54 Mult: DIVI .
+
+    $padrão  reduzir usando a regra 54 (Mult)
+
+
+estado 82
+
+   51 Termo: Termo Mult . Fator
+
+    ID           deslocar, e ir ao estado 40
+    NUM          deslocar, e ir ao estado 41
+    STRINGVALUE  deslocar, e ir ao estado 42
+    ABPAREN      deslocar, e ir ao estado 43
+
+    Var       ir ao estado 93
+    Fator     ir ao estado 96
+    Ativacao  ir ao estado 60
+
+
+estado 83
+
+   30 Selecaodecl: IF ABPAREN Expressao . FEPAREN Statement
+   31            | IF ABPAREN Expressao . FEPAREN Statement ELSE Statement
+
+    FEPAREN  deslocar, e ir ao estado 97
+
+
+estado 84
+
+   64 Argslista: Expressao .
+
+    $padrão  reduzir usando a regra 64 (Argslista)
+
+
+estado 85
+
+   60 Ativacao: ID ABPAREN Args . FEPAREN
+
+    FEPAREN  deslocar, e ir ao estado 98
+
+
+estado 86
+
+   61 Args: Argslista .
+   63 Argslista: Argslista . VIRG Expressao
+
+    VIRG  deslocar, e ir ao estado 99
+
+    $padrão  reduzir usando a regra 61 (Args)
+
+
+estado 87
+
+   62 Args: Vazio .
+
+    $padrão  reduzir usando a regra 62 (Args)
+
+
+estado 88
+
+   38 Var: ID ABCOLC Expressao . FECOLC
+
+    FECOLC  deslocar, e ir ao estado 100
+
+
+estado 89
+
+   55 Fator: ABPAREN Expressao FEPAREN .
+
+    $padrão  reduzir usando a regra 55 (Fator)
+
+
+estado 90
+
+   32 Iteracaodecl: WHILE ABPAREN Expressao . FEPAREN Statement
+
+    FEPAREN  deslocar, e ir ao estado 101
+
+
+estado 91
+
+   34 Retornodecl: RETURN Expressao PVIRG .
+
+    $padrão  reduzir usando a regra 34 (Retornodecl)
+
+
+estado 92
+
+   35 Expressao: Var IGUAL Expressao .
+
+    $padrão  reduzir usando a regra 35 (Expressao)
+
+
+estado 93
+
+   56 Fator: Var .
+
+    $padrão  reduzir usando a regra 56 (Fator)
+
+
+estado 94
+
+   39 Simplesexpressao: Somaexpressao Relacional Somaexpressao .
+   47 Somaexpressao: Somaexpressao . Soma Termo
+
+    SOMA  deslocar, e ir ao estado 70
+    SUBT  deslocar, e ir ao estado 71
+
+    $padrão  reduzir usando a regra 39 (Simplesexpressao)
+
+    Soma  ir ao estado 79
+
+
+estado 95
+
+   47 Somaexpressao: Somaexpressao Soma Termo .
+   51 Termo: Termo . Mult Fator
+
+    MULT  deslocar, e ir ao estado 80
+    DIVI  deslocar, e ir ao estado 81
+
+    $padrão  reduzir usando a regra 47 (Somaexpressao)
+
+    Mult  ir ao estado 82
+
+
+estado 96
+
+   51 Termo: Termo Mult Fator .
+
+    $padrão  reduzir usando a regra 51 (Termo)
+
+
+estado 97
+
+   30 Selecaodecl: IF ABPAREN Expressao FEPAREN . Statement
+   31            | IF ABPAREN Expressao FEPAREN . Statement ELSE Statement
+
+    IF           deslocar, e ir ao estado 39
+    ID           deslocar, e ir ao estado 40
+    NUM          deslocar, e ir ao estado 41
+    STRINGVALUE  deslocar, e ir ao estado 42
+    ABPAREN      deslocar, e ir ao estado 43
+    ABCHA        deslocar, e ir ao estado 27
+    PVIRG        deslocar, e ir ao estado 45
+    WHILE        deslocar, e ir ao estado 46
+    RETURN       deslocar, e ir ao estado 47
+
+    Compostodecl      ir ao estado 48
+    Statement         ir ao estado 102
+    Expressaodecl     ir ao estado 50
+    Selecaodecl       ir ao estado 51
+    Iteracaodecl      ir ao estado 52
+    Retornodecl       ir ao estado 53
+    Expressao         ir ao estado 54
+    Var               ir ao estado 55
+    Simplesexpressao  ir ao estado 56
+    Somaexpressao     ir ao estado 57
+    Termo             ir ao estado 58
+    Fator             ir ao estado 59
+    Ativacao          ir ao estado 60
+
+
+estado 98
+
+   60 Ativacao: ID ABPAREN Args FEPAREN .
+
+    $padrão  reduzir usando a regra 60 (Ativacao)
+
+
+estado 99
+
+   63 Argslista: Argslista VIRG . Expressao
+
+    ID           deslocar, e ir ao estado 40
+    NUM          deslocar, e ir ao estado 41
+    STRINGVALUE  deslocar, e ir ao estado 42
+    ABPAREN      deslocar, e ir ao estado 43
+
+    Expressao         ir ao estado 103
+    Var               ir ao estado 55
+    Simplesexpressao  ir ao estado 56
+    Somaexpressao     ir ao estado 57
+    Termo             ir ao estado 58
+    Fator             ir ao estado 59
+    Ativacao          ir ao estado 60
+
+
+estado 100
+
+   38 Var: ID ABCOLC Expressao FECOLC .
+
+    $padrão  reduzir usando a regra 38 (Var)
+
+
+estado 101
+
+   32 Iteracaodecl: WHILE ABPAREN Expressao FEPAREN . Statement
+
+    IF           deslocar, e ir ao estado 39
+    ID           deslocar, e ir ao estado 40
+    NUM          deslocar, e ir ao estado 41
+    STRINGVALUE  deslocar, e ir ao estado 42
+    ABPAREN      deslocar, e ir ao estado 43
+    ABCHA        deslocar, e ir ao estado 27
+    PVIRG        deslocar, e ir ao estado 45
+    WHILE        deslocar, e ir ao estado 46
+    RETURN       deslocar, e ir ao estado 47
+
+    Compostodecl      ir ao estado 48
+    Statement         ir ao estado 104
+    Expressaodecl     ir ao estado 50
+    Selecaodecl       ir ao estado 51
+    Iteracaodecl      ir ao estado 52
+    Retornodecl       ir ao estado 53
+    Expressao         ir ao estado 54
+    Var               ir ao estado 55
+    Simplesexpressao  ir ao estado 56
+    Somaexpressao     ir ao estado 57
+    Termo             ir ao estado 58
+    Fator             ir ao estado 59
+    Ativacao          ir ao estado 60
+
+
+estado 102
+
+   30 Selecaodecl: IF ABPAREN Expressao FEPAREN Statement .
+   31            | IF ABPAREN Expressao FEPAREN Statement . ELSE Statement
+
+    ELSE  deslocar, e ir ao estado 105
+
+    ELSE      [reduzir usando a regra 30 (Selecaodecl)]
+    $padrão  reduzir usando a regra 30 (Selecaodecl)
+
+
+estado 103
+
+   63 Argslista: Argslista VIRG Expressao .
+
+    $padrão  reduzir usando a regra 63 (Argslista)
+
+
+estado 104
+
+   32 Iteracaodecl: WHILE ABPAREN Expressao FEPAREN Statement .
+
+    $padrão  reduzir usando a regra 32 (Iteracaodecl)
+
+
+estado 105
+
+   31 Selecaodecl: IF ABPAREN Expressao FEPAREN Statement ELSE . Statement
+
+    IF           deslocar, e ir ao estado 39
+    ID           deslocar, e ir ao estado 40
+    NUM          deslocar, e ir ao estado 41
+    STRINGVALUE  deslocar, e ir ao estado 42
+    ABPAREN      deslocar, e ir ao estado 43
+    ABCHA        deslocar, e ir ao estado 27
+    PVIRG        deslocar, e ir ao estado 45
+    WHILE        deslocar, e ir ao estado 46
+    RETURN       deslocar, e ir ao estado 47
+
+    Compostodecl      ir ao estado 48
+    Statement         ir ao estado 106
+    Expressaodecl     ir ao estado 50
+    Selecaodecl       ir ao estado 51
+    Iteracaodecl      ir ao estado 52
+    Retornodecl       ir ao estado 53
+    Expressao         ir ao estado 54
+    Var               ir ao estado 55
+    Simplesexpressao  ir ao estado 56
+    Somaexpressao     ir ao estado 57
+    Termo             ir ao estado 58
+    Fator             ir ao estado 59
+    Ativacao          ir ao estado 60
+
+
+estado 106
+
+   31 Selecaodecl: IF ABPAREN Expressao FEPAREN Statement ELSE Statement .
+
+    $padrão  reduzir usando a regra 31 (Selecaodecl)
