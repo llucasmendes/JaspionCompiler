@@ -71,7 +71,6 @@
 #endif
 
 
-
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
 {
@@ -114,7 +113,6 @@ ativacao Ativacao1;
 args Args1;
 argslista Argslista1;
 vazio Vazio1;
-
 
 
 /* Line 2068 of yacc.c  */
