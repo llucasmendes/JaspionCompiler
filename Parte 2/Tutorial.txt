@@ -5,4 +5,5 @@ execute o script:
 para rodar o analisador a partir de um codigo de exemplo:
 
 ./jaspion < testeh.c
+para rodar o analisador sintático
 
