@@ -309,7 +309,7 @@ expressao numero35(simplesexpressao Simplesexpressao);
 //var : ID | ID ABCOLC expressao FECOLC
 struct var{	enum{Numero36,Numero37} kind;
 				union{
-					struct{string ID;}numero36;
+					struct{string ID;}numero36; 
 					struct{string ID; expressao Expressao;}numero37;
 				} u;
 };
