@@ -61,8 +61,6 @@
 /* Using locations.  */
 #define YYLSP_NEEDED 0
 
-
-
 /* Copy the first part of user declarations.  */
 
 /* Line 268 of yacc.c  */
