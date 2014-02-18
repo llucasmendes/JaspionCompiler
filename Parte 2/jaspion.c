@@ -508,3 +508,4 @@ vazio Vazio(){
 	vazio v = malloc(sizeof(*v));
 	return v;
 }
+
